@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const https = require('https');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 
@@ -39,7 +41,14 @@ app.post('/', (req,res) => {
         response.on('data', (data) => {
           let dataTemp = JSON.parse(data);
           let tt = dataTemp.main.temp;
-        res.sendFile(__dirname+'/weatherPage.html');
+          console.log(tt);
+        //   res.send({ 
+        //       some: 'json',
+        //       temp: tt,
+        //  });
+        
+          res.send(`<p>some html ${tt}</p>`)
+        // res.sendFile(__dirname+'/weatherPage.html');
         
         });
       
